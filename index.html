@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdulrahman Miqati - CV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* أنماط عامة */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* تنسيق العنوان الرئيسي */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.8rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        
+        /* تنسيق الأقسام */
+        .section {
+            background-color: white;
+            margin-bottom: 25px;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-left: 5px solid #3498db;
+        }
+        
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+            position: relative;
+        }
+        
+        .section-title i {
+            color: #3498db;
+            margin-right: 10px;
+        }
+        
+        /* تنسيق معلومات الاتصال */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item i {
+            color: #3498db;
+            margin-right: 15px;
+            margin-top: 5px;
+            width: 20px;
+        }
+        
+        .contact-label {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .contact-value {
+            color: #555;
+        }
+        
+        /* تنسيق القوائم */
+        .info-list {
+            list-style-type: none;
+        }
+        
+        .info-list li {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .item-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+        
+        .item-subtitle {
+            color: #3498db;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+        
+        .item-details {
+            color: #555;
+            font-size: 0.95rem;
+        }
+        
+        .item-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        
+        /* تنسيق اللغات */
+        .languages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .language-item {
+            background-color: #ecf0f1;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        /* تنسيق الملف الشخصي */
+        .profile-content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .profile-title {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .profile-subtitle {
+            color: #3498db;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        /* تنسيق الطباعة */
+        @media print {
+            body {
+                padding: 0;
+                background-color: white;
+            }
+            
+            .section {
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+        
+        /* تنسيق للأجهزة المحمولة */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+        
+        /* أزرار التحكم */
+        .controls {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+        
+        .control-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+        }
+        
+        .control-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+        }
+        
+        /* ترويسة الصفحة */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="page-header">
+        <div class="logo">CV<span>Online</span></div>
+        <div class="no-print">
+            <small>Last updated: December 2023</small>
+        </div>
+    </div>
+    
+    <div class="header">
+        <h1>ABDULRAHMAN MIQATI</h1>
+    </div>
+    
+    <!-- قسم المعلومات الشخصية -->
+    <div class="section">
+        <h2 class="section-title"><i class="fas fa-user"></i> Personal details</h2>
+        
+        <div class="contact-grid">
+            <div class="contact-item">
+                <i class="fas fa-user-circle"></i>
+                <div>
+                    <div class="contact-label">Name</div>
+                    <div class="contact-value">ABDULRAHMAN MIQATI</div>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <div class="contact-label">Email address</div>
+                    <div class="contact-value">Abedmlkati@yahoo.com</div>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <div class="contact-label">Phone number</div>
+                    <div class="contact-value">+961 71877730</div>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <div class="contact-label">Address</div>
+                    <div class="contact-value">Lebanon, Tripoli</div>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-birthday-cake"></i>
+                <div>
+                    <div class="contact-label">Date of birth</div>
+                    <div class="contact-value">December 4, 1990</div>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-map-pin"></i>
+                <div>
+                    <div class="contact-label">Place of birth</div>
+                    <div class="contact-value">Tripoli</div>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-venus-mars"></i>
+                <div>
+                    <div class="contact-label">Gender</div>
+                    <div class="contact-value">Male</div>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-flag"></i>
+                <div>
+                    <div class="contact-label">Nationality</div>
+                    <div class="contact-value">Lebanese</div>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <i class="fas fa-heart"></i>
+                <div>
+                    <div class="contact-label">Civil status</div>
+                    <div class="contact-value">Unmarried</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- قسم اللغات -->
+    <div class="section">
+        <h2 class="section-title"><i class="fas fa-language"></i> Languages</h2>
+        
+        <div class="languages">
+            <div class="language-item">Arabic (Native)</div>
+            <div class="language-item">English (Good)</div>
+        </div>
+    </div>
+    
+    <!-- قسم الملف الشخصي -->
+    <div class="section">
+        <h2 class="section-title"><i class="fas fa-id-badge"></i> Profile</h2>
+        
+        <div class="profile-content">
+            <div class="profile-title">Senior Dairy Sales Representative</div>
+            <div class="profile-subtitle">Tripoli, Lebanon | (20 Years of Experience)</div>
+            <p class="item-details">
+                Led sales activities for a wide range of traditional Lebanese and international dairy products.<br>
+                Mastered the art of cheese cutting, weighing, and professional packaging for customers.<br>
+                Achieved consistent sales growth by providing exceptional service and product advice.
+            </p>
+        </div>
+    </div>
+    
+    <!-- قسم التعليم -->
+    <div class="section">
+        <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+        
+        <ul class="info-list">
+            <li>
+                <div class="item-date">Dec 2010 - May 2012</div>
+                <div class="item-title">Secondary School Certificate</div>
+                <div class="item-details">Tripoli, Lebanon</div>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- قسم التوظيف -->
+    <div class="section">
+        <h2 class="section-title"><i class="fas fa-briefcase"></i> Employment</h2>
+        
+        <ul class="info-list">
+            <li>
+                <div class="item-date">Jan 2021 - Dec 2025</div>
+                <div class="item-title">Dairy and Deli Specialist</div>
+                <div class="item-subtitle">Super Market El Mast, Tripoli</div>
+                <div class="item-details">
+                    Responsible for dairy and deli department operations including sales, customer service, and inventory management.
+                </div>
+            </li>
+            <li>
+                <div class="item-date">Previous Experience</div>
+                <div class="item-title">Senior Sales Representative</div>
+                <div class="item-subtitle">Tripoli, Lebanon</div>
+                <div class="item-details">
+                    20 years of experience in dairy sales, customer relationship management, and product merchandising.
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- قسم التدريب -->
+    <div class="section">
+        <h2 class="section-title"><i class="fas fa-clipboard-check"></i> Internships</h2>
+        
+        <ul class="info-list">
+            <li>
+                <div class="item-date">Feb 2021 - Dec 2026</div>
+                <div class="item-title">Dairy Products Refrigeration Specialist</div>
+                <div class="item-subtitle">Super Market El Mast, Tripoli</div>
+                <div class="item-details">
+                    Specialized in selling and maintaining dairy products (milk and cheese) in refrigeration units to ensure quality and freshness.
+                </div>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- أزرار التحكم -->
+    <div class="controls no-print">
+        <button class="control-btn" id="printBtn" title="Print CV">
+            <i class="fas fa-print"></i>
+        </button>
+        <button class="control-btn" id="themeBtn" title="Toggle Theme">
+            <i class="fas fa-moon"></i>
+        </button>
+        <button class="control-btn" id="langBtn" title="Toggle Language">
+            <i class="fas fa-language"></i>
+        </button>
+    </div>
+    
+    <script>
+        // وظيفة الطباعة
+        document.getElementById('printBtn').addEventListener('click', function() {
+            window.print();
+        });
+        
+        // تبديل السمة (فاتح/غامق)
+        document.getElementById('themeBtn').addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+            const icon = this.querySelector('i');
+            if (document.body.classList.contains('dark-theme')) {
+                document.body.style.backgroundColor = '#2c3e50';
+                document.body.style.color = '#ecf0f1';
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                document.body.style.backgroundColor = '#f5f5f5';
+                document.body.style.color = '#333';
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+        
+        // تبديل اللغة (سيتم تطويره لاحقًا)
+        document.getElementById('langBtn').addEventListener('click', function() {
+            alert('سيتم إضافة خاصية تبديل اللغة في تحديث قادم');
+        });
+        
+        // إضافة تأثير عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach((section, index) => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+            
+            // إضافة التاريخ الحالي
+            const currentDate = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = currentDate.toLocaleDateString('en-US', options);
+            
+            // تحديث تاريخ آخر تحديث
+            const updateElement = document.querySelector('.page-header small');
+            if (updateElement) {
+                updateElement.textContent = `Last updated: ${formattedDate}`;
+            }
+        });
+    </script>
+</body>
+</html>
