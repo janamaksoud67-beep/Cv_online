@@ -1,490 +1,762 @@
 <!DOCTYPE html>
-<html lang="ar" dir="ltr">
+<html dir="rtl" lang="ar">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abdulrahman Miqati - CV</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>طرابلس الفيحاء | منصة المواطن التفاعلية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
-        /* أنماط عامة */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        
+
+        :root {
+            --bg-body: #F5F7FB;
+            --bg-surface: #FFFFFF;
+            --border-color: #E9EEF3;
+            --text-primary: #1A2C3E;
+            --text-secondary: #5A6E7C;
+            --accent-green: #2C7A4D;
+            --accent-green-dark: #1E5A3A;
+            --accent-gold: #D4AF37;
+            --danger-light: #FEF2F2;
+            --danger-bg: #FEE2E2;
+            --gap-bg: #FFF9E6;
+            --hover-bg: #F0F4F9;
+            --primary-gradient: linear-gradient(135deg, #2C7A4D 0%, #1E5A3A 100%);
+        }
+
+        body.dark {
+            --bg-body: #0F172A;
+            --bg-surface: #1E293B;
+            --border-color: #334155;
+            --text-primary: #F1F5F9;
+            --text-secondary: #94A3B8;
+            --accent-green: #4ADE80;
+            --accent-green-dark: #22C55E;
+            --danger-light: #2D1B1B;
+            --danger-bg: #3B1E1E;
+            --gap-bg: #2D2A1A;
+            --hover-bg: #334155;
+        }
+
         body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+            font-family: 'Inter', 'Cairo', sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            transition: background 0.2s, color 0.2s;
+            min-height: 100vh;
         }
-        
-        /* تنسيق العنوان الرئيسي */
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #2c3e50;
-            padding-bottom: 20px;
-        }
-        
-        .header h1 {
-            color: #2c3e50;
-            font-size: 2.8rem;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
-        
-        /* تنسيق الأقسام */
-        .section {
-            background-color: white;
-            margin-bottom: 25px;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            border-left: 5px solid #3498db;
-        }
-        
-        .section-title {
-            color: #2c3e50;
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #ecf0f1;
-            position: relative;
-        }
-        
-        .section-title i {
-            color: #3498db;
-            margin-right: 10px;
-        }
-        
-        /* تنسيق معلومات الاتصال */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
-        .contact-item {
+
+        /* Layout */
+        .app-layout {
             display: flex;
-            align-items: flex-start;
-            margin-bottom: 15px;
+            min-height: 100vh;
         }
-        
-        .contact-item i {
-            color: #3498db;
-            margin-right: 15px;
-            margin-top: 5px;
-            width: 20px;
-        }
-        
-        .contact-label {
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 5px;
-        }
-        
-        .contact-value {
-            color: #555;
-        }
-        
-        /* تنسيق القوائم */
-        .info-list {
-            list-style-type: none;
-        }
-        
-        .info-list li {
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #ecf0f1;
-        }
-        
-        .info-list li:last-child {
-            border-bottom: none;
-        }
-        
-        .item-title {
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 5px;
-            font-size: 1.1rem;
-        }
-        
-        .item-subtitle {
-            color: #3498db;
-            font-style: italic;
-            margin-bottom: 8px;
-        }
-        
-        .item-details {
-            color: #555;
-            font-size: 0.95rem;
-        }
-        
-        .item-date {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            margin-bottom: 5px;
-        }
-        
-        /* تنسيق اللغات */
-        .languages {
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--bg-surface);
+            border-left: 1px solid var(--border-color);
+            padding: 32px 20px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
             display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        
-        .language-item {
-            background-color: #ecf0f1;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        
-        /* تنسيق الملف الشخصي */
-        .profile-content {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
-        }
-        
-        .profile-title {
-            color: #2c3e50;
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-        
-        .profile-subtitle {
-            color: #3498db;
-            margin-bottom: 15px;
-            font-style: italic;
-        }
-        
-        /* تنسيق الطباعة */
-        @media print {
-            body {
-                padding: 0;
-                background-color: white;
-            }
-            
-            .section {
-                box-shadow: none;
-                border: 1px solid #ddd;
-            }
-            
-            .no-print {
-                display: none;
-            }
-        }
-        
-        /* تنسيق للأجهزة المحمولة */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.2rem;
-            }
-            
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .section {
-                padding: 20px;
-            }
-        }
-        
-        /* أزرار التحكم */
-        .controls {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            display: flex;
-            gap: 10px;
+            flex-direction: column;
+            gap: 32px;
             z-index: 100;
         }
-        
-        .control-btn {
-            background-color: #3498db;
-            color: white;
+
+        .logo-area h2 {
+            font-size: 1.6rem;
+            color: var(--text-primary);
+        }
+
+        .logo-area h2 i {
+            color: var(--accent-green);
+        }
+
+        .logo-area p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .nav-links-side {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nav-link-side {
+            background: transparent;
             border: none;
-            padding: 12px 18px;
-            border-radius: 50%;
+            padding: 12px 16px;
+            border-radius: 20px;
+            font-weight: 550;
+            text-align: right;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-link-side i {
+            width: 24px;
+        }
+
+        .nav-link-side.active,
+        .nav-link-side:hover {
+            background: var(--hover-bg);
+            color: var(--accent-green);
+        }
+
+        .theme-toggle {
+            background: var(--hover-bg);
+            border: none;
+            padding: 10px;
+            border-radius: 40px;
+            cursor: pointer;
+            margin-top: auto;
+            color: var(--text-primary);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 24px 32px 80px 32px;
+            max-width: calc(100% - 280px);
+        }
+
+        /* Bottom Nav Mobile */
+        .bottom-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-color);
+            padding: 10px 20px;
+            justify-content: space-around;
+            z-index: 200;
+        }
+
+        .bottom-nav-item {
+            background: none;
+            border: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        .bottom-nav-item i {
+            font-size: 24px;
+        }
+
+        .bottom-nav-item.active {
+            color: var(--accent-green);
+        }
+
+        /* Ticker */
+        .ticker-container {
+            background: var(--accent-green);
+            color: white;
+            padding: 8px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            border-radius: 40px;
+            margin-bottom: 24px;
+        }
+
+        .ticker-content {
+            display: inline-block;
+            animation: tickerMove 20s linear infinite;
+            padding-left: 100%;
+        }
+
+        @keyframes tickerMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Cards */
+        .glass-card {
+            background: var(--bg-surface);
+            border-radius: 28px;
+            padding: 24px 28px;
+            margin-bottom: 28px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+            transition: 0.2s;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        .financial-gap-card {
+            background: var(--gap-bg);
+            border-right: 4px solid #F59E0B;
+        }
+
+        .progress-gap {
+            height: 6px;
+            background: #E2E8F0;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+
+        .progress-gap-fill {
+            height: 6px;
+            background: #F59E0B;
+            border-radius: 10px;
+            width: 0%;
+        }
+
+        /* Persona / Project Cards */
+        .persona-card {
+            background: var(--bg-surface);
+            border-radius: 24px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 14px;
+            transition: 0.1s;
+        }
+
+        .avatar {
+            width: 56px;
+            height: 56px;
+            border-radius: 60px;
+            background-size: cover;
+            background-position: center;
+            flex-shrink: 0;
+        }
+
+        .project-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .complaint-high {
+            background: var(--danger-bg);
+            border-color: #FCA5A5;
+        }
+
+        .vote-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+        }
+
+        .vote-btn.upvote:hover {
+            background: #E8F5E9;
+            color: var(--accent-green);
+        }
+
+        .vote-btn.downvote:hover {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+
+        .impact-btn, .btn-glow {
+            background: var(--hover-bg);
+            border: none;
+            padding: 6px 14px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-green);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .filter-chip {
+            background: var(--hover-bg);
+            padding: 6px 16px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .filter-chip.active {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        /* Report Form */
+        .report-form {
+            background: var(--bg-surface);
+            border-radius: 28px;
+            padding: 24px;
+            margin-bottom: 28px;
+            border: 1px solid var(--border-color);
+        }
+
+        .report-form input, .report-form textarea, .report-form select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 16px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-body);
+            color: var(--text-primary);
+            font-family: inherit;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 1100;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.2s;
         }
-        
-        .control-btn:hover {
-            background-color: #2980b9;
-            transform: translateY(-3px);
+
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
         }
-        
-        /* ترويسة الصفحة */
-        .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
+
+        .modal-container {
+            background: var(--bg-surface);
+            width: 90%;
+            max-width: 450px;
+            border-radius: 32px;
+            padding: 28px;
+            text-align: center;
         }
-        
-        .logo {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            font-weight: bold;
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            .main-content {
+                max-width: 100%;
+                padding: 16px 16px 80px 16px;
+            }
+            .bottom-nav {
+                display: flex;
+            }
+            .persona-card {
+                flex-wrap: wrap;
+            }
         }
-        
-        .logo span {
-            color: #3498db;
+
+        .page {
+            display: none;
+            animation: fade 0.2s;
+        }
+
+        .page.active-page {
+            display: block;
+        }
+
+        @keyframes fade {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
-    <div class="page-header">
-        <div class="logo">CV<span>Online</span></div>
-        <div class="no-print">
-            <small>Last updated: December 2023</small>
+    <div class="app-layout">
+        <!-- Sidebar Desktop -->
+        <div class="sidebar">
+            <div class="logo-area">
+                <h2><i class="fas fa-chess-queen"></i> طرابلس</h2>
+                <p>منصة المواطن التفاعلية</p>
+            </div>
+            <div class="nav-links-side">
+                <button class="nav-link-side active" data-page="home"><i class="fas fa-chart-line"></i> لوحة القيادة</button>
+                <button class="nav-link-side" data-page="projects"><i class="fas fa-drafting-compass"></i> المشاريع</button>
+                <button class="nav-link-side" data-page="donors"><i class="fas fa-crown"></i> الرعاة</button>
+                <button class="nav-link-side" data-page="complaints"><i class="fas fa-inbox"></i> البلاغات & الاقتراحات</button>
+                <button class="nav-link-side" data-page="payment"><i class="fas fa-donate"></i> استثمر</button>
+            </div>
+            <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i> الوضع الداكن</button>
+        </div>
+
+        <div class="main-content">
+            <!-- Ticker -->
+            <div class="ticker-container">
+                <div class="ticker-content" id="liveTickerText">🎉 آخر البلاغات: تم تأكيد إصلاح حفرة في القبة | تبرع جديد بـ 250$ لمشروع الإنارة | وثّق مواطن تقدم ساحة التل | أضف بلاغك الآن!</div>
+            </div>
+
+            <!-- Home Page -->
+            <div id="homePage" class="page active-page">
+                <div class="stats-grid">
+                    <div class="glass-card"><i class="fas fa-coins"></i> الميزانية الكلية<div class="stat-number" id="totalBudgetD">-- USD</div></div>
+                    <div class="glass-card"><i class="fas fa-chart-pie"></i> إجمالي المصروفات<div class="stat-number" id="totalExpenseD">-- USD</div></div>
+                    <div class="glass-card financial-gap-card"><i class="fas fa-exclamation-triangle"></i> الفجوة المالية<div class="stat-number" id="financialGapSpan">-- USD</div><div class="progress-gap"><div class="progress-gap-fill" id="gapProgressFill"></div></div><small>3 مشاريع متوقفة (كهرباء، ماء، مدارس)</small></div>
+                    <div class="glass-card"><i class="fas fa-hand-sparkles"></i> المستثمرون<div class="stat-number" id="donorCountSpan">--</div></div>
+                </div>
+                <div class="glass-card"><h3><i class="fas fa-chart-line"></i> تطور الميزانية (مليون USD)</h3><canvas id="masterLineChart"></canvas></div>
+                <div class="glass-card"><h3><i class="fas fa-chart-pie"></i> توزيع المصروفات</h3><canvas id="masterPieChart"></canvas></div>
+                <div class="glass-card"><h3><i class="fas fa-bullhorn"></i> آخر البلاغات المهمة</h3><div id="homeRecentReports"></div></div>
+            </div>
+
+            <div id="projectsPage" class="page"><div class="glass-card"><h2><i class="fas fa-hard-hat"></i> مشاريع النهضة</h2><div id="projectsEpicList"></div></div></div>
+            <div id="donorsPage" class="page"><div class="glass-card"><h2><i class="fas fa-star-of-life"></i> الرعاة وتتبع الأثر</h2><div id="donorsEpicContainer"></div></div></div>
+            
+            <!-- Complaints + NEW REPORT FORM -->
+            <div id="complaintsPage" class="page">
+                <div class="glass-card">
+                    <h2><i class="fas fa-flag-checkered"></i> أضف بلاغاً جديداً (مشكلة، اقتراح، فكرة)</h2>
+                    <div class="report-form" id="reportFormSection">
+                        <input type="text" id="reportUserName" placeholder="اسمك الكامل" value="مواطن طرابلسي">
+                        <input type="text" id="reportTitle" placeholder="عنوان البلاغ (مثال: حفرة خطيرة في الشارع)">
+                        <select id="reportLocation">
+                            <option value="المنارة">المنارة</option>
+                            <option value="ساحة التل">ساحة التل</option>
+                            <option value="الميناء">الميناء</option>
+                            <option value="التبانة">التبانة</option>
+                            <option value="شارع بعلبك">شارع بعلبك</option>
+                            <option value="أخرى">أخرى</option>
+                        </select>
+                        <textarea id="reportDetails" rows="3" placeholder="وصف تفصيلي للمشكلة أو الاقتراح..."></textarea>
+                        <button id="submitReportBtn" class="btn-primary" style="width:100%;"><i class="fas fa-paper-plane"></i> إرسال البلاغ</button>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <h2><i class="fas fa-message"></i> أصوات طرابلس (البلاغات والاقتراحات)</h2>
+                    <div style="display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap;">
+                        <div class="filter-chip active" data-sort="latest">الأحدث</div>
+                        <div class="filter-chip" data-sort="mostUpvoted">الأكثر تفاعلاً</div>
+                        <div class="filter-chip" data-sort="location">حسب المنطقة</div>
+                    </div>
+                    <div id="complaintsEpicList"></div>
+                </div>
+            </div>
+
+            <div id="paymentPage" class="page"><div class="glass-card"><h3><i class="fas fa-sack-dollar"></i> شارك في البناء</h3><input type="text" id="investorName" placeholder="الاسم الكامل" style="width:100%; padding:12px; margin-bottom:12px;"><input type="number" id="investAmount" placeholder="المبلغ (USD)" style="width:100%; padding:12px; margin-bottom:12px;"><button id="doInvest" class="impact-btn" style="width:100%; background:var(--accent-green); color:white;">تأكيد الاستثمار</button></div><div class="glass-card"><h3>آخر المعاملات</h3><div id="paymentEpicHistory"></div></div></div>
         </div>
     </div>
-    
-    <div class="header">
-        <h1>ABDULRAHMAN MIQATI</h1>
+
+    <!-- Bottom Nav Mobile -->
+    <div class="bottom-nav">
+        <button class="bottom-nav-item active" data-page="home"><i class="fas fa-chart-line"></i><span>الرئيسية</span></button>
+        <button class="bottom-nav-item" data-page="projects"><i class="fas fa-drafting-compass"></i><span>المشاريع</span></button>
+        <button class="bottom-nav-item" data-page="donors"><i class="fas fa-crown"></i><span>الرعاة</span></button>
+        <button class="bottom-nav-item" data-page="complaints"><i class="fas fa-inbox"></i><span>البلاغات</span></button>
+        <button class="bottom-nav-item" data-page="payment"><i class="fas fa-donate"></i><span>استثمر</span></button>
     </div>
-    
-    <!-- قسم المعلومات الشخصية -->
-    <div class="section">
-        <h2 class="section-title"><i class="fas fa-user"></i> Personal details</h2>
-        
-        <div class="contact-grid">
-            <div class="contact-item">
-                <i class="fas fa-user-circle"></i>
-                <div>
-                    <div class="contact-label">Name</div>
-                    <div class="contact-value">ABDULRAHMAN MIQATI</div>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <div>
-                    <div class="contact-label">Email address</div>
-                    <div class="contact-value">Abedmlkati@yahoo.com</div>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <i class="fas fa-phone"></i>
-                <div>
-                    <div class="contact-label">Phone number</div>
-                    <div class="contact-value">+961 71877730</div>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <div>
-                    <div class="contact-label">Address</div>
-                    <div class="contact-value">Lebanon, Tripoli</div>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <i class="fas fa-birthday-cake"></i>
-                <div>
-                    <div class="contact-label">Date of birth</div>
-                    <div class="contact-value">December 4, 1990</div>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <i class="fas fa-map-pin"></i>
-                <div>
-                    <div class="contact-label">Place of birth</div>
-                    <div class="contact-value">Tripoli</div>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <i class="fas fa-venus-mars"></i>
-                <div>
-                    <div class="contact-label">Gender</div>
-                    <div class="contact-value">Male</div>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <i class="fas fa-flag"></i>
-                <div>
-                    <div class="contact-label">Nationality</div>
-                    <div class="contact-value">Lebanese</div>
-                </div>
-            </div>
-            
-            <div class="contact-item">
-                <i class="fas fa-heart"></i>
-                <div>
-                    <div class="contact-label">Civil status</div>
-                    <div class="contact-value">Unmarried</div>
-                </div>
+
+    <!-- Modal for Documentation -->
+    <div id="docModal" class="modal-overlay">
+        <div class="modal-container">
+            <i class="fas fa-camera-retro fa-2x" style="color:var(--accent-green);"></i>
+            <h3 style="margin:12px 0">توثيق تقدم المشروع</h3>
+            <input type="text" id="docProjectName" placeholder="اسم المشروع" style="width:100%; padding:10px; margin-bottom:12px;">
+            <input type="file" id="docImageUpload" accept="image/*" style="margin-bottom:12px;">
+            <textarea id="docComment" placeholder="ملاحظاتك (الموقع، التاريخ)" rows="2" style="width:100%; border-radius:20px; padding:10px;"></textarea>
+            <div style="display:flex; gap:12px; margin-top:20px;">
+                <button class="impact-btn" id="confirmDocBtn" style="flex:1;">تأكيد الرفع</button>
+                <button class="impact-btn" id="closeModalBtn" style="flex:1; background:#FEE2E2;">إلغاء</button>
             </div>
         </div>
     </div>
-    
-    <!-- قسم اللغات -->
-    <div class="section">
-        <h2 class="section-title"><i class="fas fa-language"></i> Languages</h2>
-        
-        <div class="languages">
-            <div class="language-item">Arabic (Native)</div>
-            <div class="language-item">English (Good)</div>
-        </div>
-    </div>
-    
-    <!-- قسم الملف الشخصي -->
-    <div class="section">
-        <h2 class="section-title"><i class="fas fa-id-badge"></i> Profile</h2>
-        
-        <div class="profile-content">
-            <div class="profile-title">Senior Dairy Sales Representative</div>
-            <div class="profile-subtitle">Tripoli, Lebanon | (20 Years of Experience)</div>
-            <p class="item-details">
-                Led sales activities for a wide range of traditional Lebanese and international dairy products.<br>
-                Mastered the art of cheese cutting, weighing, and professional packaging for customers.<br>
-                Achieved consistent sales growth by providing exceptional service and product advice.
-            </p>
-        </div>
-    </div>
-    
-    <!-- قسم التعليم -->
-    <div class="section">
-        <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
-        
-        <ul class="info-list">
-            <li>
-                <div class="item-date">Dec 2010 - May 2012</div>
-                <div class="item-title">Secondary School Certificate</div>
-                <div class="item-details">Tripoli, Lebanon</div>
-            </li>
-        </ul>
-    </div>
-    
-    <!-- قسم التوظيف -->
-    <div class="section">
-        <h2 class="section-title"><i class="fas fa-briefcase"></i> Employment</h2>
-        
-        <ul class="info-list">
-            <li>
-                <div class="item-date">Jan 2021 - Dec 2025</div>
-                <div class="item-title">Dairy and Deli Specialist</div>
-                <div class="item-subtitle">Super Market El Mast, Tripoli</div>
-                <div class="item-details">
-                    Responsible for dairy and deli department operations including sales, customer service, and inventory management.
-                </div>
-            </li>
-            <li>
-                <div class="item-date">Previous Experience</div>
-                <div class="item-title">Senior Sales Representative</div>
-                <div class="item-subtitle">Tripoli, Lebanon</div>
-                <div class="item-details">
-                    20 years of experience in dairy sales, customer relationship management, and product merchandising.
-                </div>
-            </li>
-        </ul>
-    </div>
-    
-    <!-- قسم التدريب -->
-    <div class="section">
-        <h2 class="section-title"><i class="fas fa-clipboard-check"></i> Internships</h2>
-        
-        <ul class="info-list">
-            <li>
-                <div class="item-date">Feb 2021 - Dec 2026</div>
-                <div class="item-title">Dairy Products Refrigeration Specialist</div>
-                <div class="item-subtitle">Super Market El Mast, Tripoli</div>
-                <div class="item-details">
-                    Specialized in selling and maintaining dairy products (milk and cheese) in refrigeration units to ensure quality and freshness.
-                </div>
-            </li>
-        </ul>
-    </div>
-    
-    <!-- أزرار التحكم -->
-    <div class="controls no-print">
-        <button class="control-btn" id="printBtn" title="Print CV">
-            <i class="fas fa-print"></i>
-        </button>
-        <button class="control-btn" id="themeBtn" title="Toggle Theme">
-            <i class="fas fa-moon"></i>
-        </button>
-        <button class="control-btn" id="langBtn" title="Toggle Language">
-            <i class="fas fa-language"></i>
-        </button>
-    </div>
-    
+
     <script>
-        // وظيفة الطباعة
-        document.getElementById('printBtn').addEventListener('click', function() {
-            window.print();
-        });
-        
-        // تبديل السمة (فاتح/غامق)
-        document.getElementById('themeBtn').addEventListener('click', function() {
-            document.body.classList.toggle('dark-theme');
-            const icon = this.querySelector('i');
-            if (document.body.classList.contains('dark-theme')) {
-                document.body.style.backgroundColor = '#2c3e50';
-                document.body.style.color = '#ecf0f1';
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                document.body.style.backgroundColor = '#f5f5f5';
-                document.body.style.color = '#333';
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        });
-        
-        // تبديل اللغة (سيتم تطويره لاحقًا)
-        document.getElementById('langBtn').addEventListener('click', function() {
-            alert('سيتم إضافة خاصية تبديل اللغة في تحديث قادم');
-        });
-        
-        // إضافة تأثير عند تحميل الصفحة
-        document.addEventListener('DOMContentLoaded', function() {
-            const sections = document.querySelectorAll('.section');
-            sections.forEach((section, index) => {
-                section.style.opacity = '0';
-                section.style.transform = 'translateY(20px)';
-                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                
-                setTimeout(() => {
-                    section.style.opacity = '1';
-                    section.style.transform = 'translateY(0)';
-                }, 100 * index);
+        // ---------------------------- DATA ----------------------------
+        let totalBudgetUSD = 58400000;
+        let requiredBudgetForProjects = 72000000;
+        let expenseBreakdown = { infrastructure: 4100000, tech: 2800000, cleaning: 1250000, tourism: 1670000 };
+
+        let projectsData = [
+            { id: 1, name: "إعادة إحياء ساحة التل", cost: 12400000, supervisor: "الدكتورة ناديا", progress: 47, image: "https://images.unsplash.com/photo-1570168007204-d4b8d1705cc3?w=100&h=100&fit=crop", location: "ساحة التل" },
+            { id: 2, name: "ميناء طرابلس الرقمي", cost: 28000000, supervisor: "المهندس وائل", progress: 22, image: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=100&h=100&fit=crop", location: "الميناء" },
+            { id: 3, name: "الإنارة الذكية", cost: 5700000, supervisor: "شركة فينوس", progress: 68, image: "https://images.unsplash.com/photo-1567165213677-8b47cb6a5a8e?w=100&h=100&fit=crop", location: "المنارة" }
+        ];
+
+        let donorsArray = [
+            { id: 1, name: "فريد مخزومي", amount: 1200000, date: "2025-02-01", img: "https://randomuser.me/api/portraits/men/15.jpg", type: "مالية", fundedProjectId: 1 },
+            { id: 2, name: "رندة أبو العزم", amount: 750000, date: "2025-02-05", img: "https://randomuser.me/api/portraits/women/56.jpg", type: "مالية", fundedProjectId: 2 },
+            { id: 3, name: "فريق سند شبابي", amount: 0, date: "2025-02-18", img: "https://randomuser.me/api/portraits/men/33.jpg", type: "تطوعية", fundedProjectId: 1 },
+            { id: 4, name: "مؤسسة الصنائع", amount: 2500000, date: "2025-01-20", img: "https://randomuser.me/api/portraits/men/42.jpg", type: "مالية", fundedProjectId: 2 }
+        ];
+
+        // بلاغات أولية مع إضافة صور افتراضية
+        let complaintsArray = [
+            { id: 1, userName: "أمين الساحلي", date: "2025-02-12", issue: "تأخر الإنارة في الشارع الرئيسي", location: "المنارة", img: "https://randomuser.me/api/portraits/men/33.jpg", details: "الإنارة لم تكتم رغم مرور 3 أشهر", upvotes: 14, downvotes: 2 },
+            { id: 2, userName: "ليال حداد", date: "2025-02-14", issue: "حفرة خطيرة تهدد المارة", location: "شارع بعلبك", img: "https://randomuser.me/api/portraits/women/42.jpg", details: "حفرة كبيرة بعمق متر تقريباً تحتاج صيانة فورية", upvotes: 8, downvotes: 1 },
+            { id: 3, userName: "محمد طربية", date: "2025-02-15", issue: "تراكم النفايات منذ أسبوعين", location: "التبانة", img: "https://randomuser.me/api/portraits/men/67.jpg", details: "النفايات تسببت بروائح كريهة وأمراض", upvotes: 22, downvotes: 3 }
+        ];
+
+        let budgetTimeSeries = { labels: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو"], values: [48.2, 49.8, 51.4, 53.0, 55.2, 57.1, 58.4] };
+        let lineChart, pieChart;
+        let currentSort = "latest";
+
+        // Helper Functions
+        function computeTotalExpenses() {
+            return expenseBreakdown.infrastructure + expenseBreakdown.tech + expenseBreakdown.cleaning + expenseBreakdown.tourism;
+        }
+        function computeFinancialGap() {
+            return Math.max(0, requiredBudgetForProjects - (totalBudgetUSD - computeTotalExpenses()));
+        }
+        function updateStatsUI() {
+            document.getElementById('totalBudgetD').innerHTML = totalBudgetUSD.toLocaleString() + " USD";
+            document.getElementById('totalExpenseD').innerHTML = computeTotalExpenses().toLocaleString() + " USD";
+            document.getElementById('donorCountSpan').innerHTML = donorsArray.length;
+            const gap = computeFinancialGap();
+            document.getElementById('financialGapSpan').innerHTML = gap.toLocaleString() + " USD";
+            let covered = Math.max(0, (totalBudgetUSD - computeTotalExpenses()) / requiredBudgetForProjects * 100);
+            document.getElementById('gapProgressFill').style.width = Math.min(100, covered) + "%";
+        }
+
+        function initCharts() {
+            if (lineChart) lineChart.destroy();
+            lineChart = new Chart(document.getElementById('masterLineChart'), {
+                type: 'line', data: { labels: budgetTimeSeries.labels, datasets: [{ label: 'الميزانية (مليون USD)', data: budgetTimeSeries.values, borderColor: '#2C7A4D', fill: true, tension: 0.3 }] }
             });
-            
-            // إضافة التاريخ الحالي
-            const currentDate = new Date();
-            const options = { year: 'numeric', month: 'long', day: 'numeric' };
-            const formattedDate = currentDate.toLocaleDateString('en-US', options);
-            
-            // تحديث تاريخ آخر تحديث
-            const updateElement = document.querySelector('.page-header small');
-            if (updateElement) {
-                updateElement.textContent = `Last updated: ${formattedDate}`;
+            if (pieChart) pieChart.destroy();
+            pieChart = new Chart(document.getElementById('masterPieChart'), {
+                type: 'doughnut', data: { labels: ['البنية التحتية', 'التكنولوجيا', 'النظافة', 'السياحة'], datasets: [{ data: [expenseBreakdown.infrastructure, expenseBreakdown.tech, expenseBreakdown.cleaning, expenseBreakdown.tourism], backgroundColor: ['#2C7A4D', '#3B82F6', '#F59E0B', '#8B5CF6'] }] }
+            });
+        }
+
+        function renderProjects() {
+            let container = document.getElementById('projectsEpicList');
+            container.innerHTML = projectsData.map(p => `
+                <div class="persona-card">
+                    <img src="${p.image}" class="project-img">
+                    <div style="flex:1">
+                        <h4>${p.name}</h4>
+                        <p>المشرف: ${p.supervisor} | التكلفة: ${p.cost.toLocaleString()} USD</p>
+                        <div style="display:flex; gap:8px; align-items:center;"><div style="flex:1; background:#E2E8F0; border-radius:20px;"><div style="width:${p.progress}%; background:var(--accent-green); height:6px; border-radius:20px;"></div></div><span>${p.progress}%</span></div>
+                        <button class="impact-btn" onclick="openDocModal('${p.name}')"><i class="fas fa-camera"></i> توثيق الموقع</button>
+                        <button class="impact-btn" onclick="alert('📍 موقع المشروع: ${p.location} - طرابلس')"><i class="fas fa-map-marker-alt"></i> خريطة مصغرة</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderDonors() {
+            let container = document.getElementById('donorsEpicContainer');
+            container.innerHTML = donorsArray.map(d => {
+                let project = projectsData.find(p => p.id === d.fundedProjectId);
+                return `<div class="persona-card"><div class="avatar" style="background-image:url('${d.img}');"></div><div><h4>${d.name}</h4><p>💰 ${d.amount.toLocaleString()} USD | ${d.type} | مشروع: ${project?.name}</p><button class="impact-btn" onclick="alert('📊 تتبع الأثر: مساهمتك ساعدت في تقدم المشروع بنسبة ${Math.floor(d.amount/(project?.cost||1)*100)}%')"><i class="fas fa-chart-line"></i> تتبع أثر</button></div></div>`;
+            }).join('');
+        }
+
+        // عرض البلاغات مع دعم التصويت
+        function renderComplaints() {
+            let sorted = [...complaintsArray];
+            if (currentSort === 'mostUpvoted') sorted.sort((a, b) => b.upvotes - a.upvotes);
+            else if (currentSort === 'location') sorted.sort((a, b) => a.location.localeCompare(b.location));
+            else sorted.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            let container = document.getElementById('complaintsEpicList');
+            container.innerHTML = sorted.map(c => `
+                <div class="persona-card ${c.upvotes >= 10 ? 'complaint-high' : ''}">
+                    <div class="avatar" style="background-image:url('${c.img}');"></div>
+                    <div style="flex:1">
+                        <strong>${c.userName}</strong> 🗣️ <strong>${c.issue}</strong><br>
+                        📍 ${c.location} | 📅 ${c.date}<br>
+                        <small>📝 ${c.details.substring(0, 80)}...</small>
+                        <div style="margin-top:8px;">
+                            <button class="vote-btn upvote" data-id="${c.id}" data-type="up"><i class="fas fa-thumbs-up"></i> ${c.upvotes}</button>
+                            <button class="vote-btn downvote" data-id="${c.id}" data-type="down"><i class="fas fa-thumbs-down"></i> ${c.downvotes}</button>
+                            <button class="impact-btn" onclick="alert('التفاصيل الكاملة: ${c.details}')"><i class="fas fa-info-circle"></i> التفاصيل</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            document.querySelectorAll('.vote-btn').forEach(btn => {
+                btn.removeEventListener('click', window.voteHandler);
+                const handler = (e) => {
+                    e.stopPropagation();
+                    const id = parseInt(btn.dataset.id);
+                    const type = btn.dataset.type;
+                    let comp = complaintsArray.find(c => c.id === id);
+                    if (comp) {
+                        if (type === 'up') comp.upvotes++;
+                        else comp.downvotes++;
+                        renderComplaints();
+                        updateHomeRecentReports();
+                        updateStatsUI();
+                    }
+                };
+                btn.addEventListener('click', handler);
+                btn.voteHandler = handler;
+            });
+        }
+
+        // إضافة بلاغ جديد
+        function addNewReport(userName, title, location, details) {
+            if (!title.trim() || !details.trim()) {
+                alert("الرجاء إدخال عنوان ووصف للبلاغ");
+                return false;
             }
+            const newId = Date.now();
+            const newReport = {
+                id: newId,
+                userName: userName.trim() || "مواطن",
+                date: new Date().toISOString().slice(0,10),
+                issue: title.trim(),
+                location: location,
+                img: "https://randomuser.me/api/portraits/lego/1.jpg",
+                details: details.trim(),
+                upvotes: 0,
+                downvotes: 0
+            };
+            complaintsArray.unshift(newReport);
+            renderComplaints();
+            updateHomeRecentReports();
+            // تحديث الشريط المتحرك بشكل رمزي
+            const tickerDiv = document.getElementById('liveTickerText');
+            tickerDiv.innerHTML = `🚨 بلاغ جديد: "${title.substring(0,40)}" من ${userName} | ${location} | شارك برأيك! ` + tickerDiv.innerHTML;
+            alert(`✅ تم إضافة بلاغك بنجاح! سيتم النظر فيه من قبل الفريق.`);
+            return true;
+        }
+
+        function updateHomeRecentReports() {
+            const recentContainer = document.getElementById('homeRecentReports');
+            if(recentContainer){
+                let latest3 = [...complaintsArray].sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,3);
+                recentContainer.innerHTML = latest3.map(c => `<div style="padding:8px 0; border-bottom:1px solid var(--border-color);"><i class="fas fa-comment-dots"></i> <strong>${c.issue}</strong> - ${c.location} (👍 ${c.upvotes})</div>`).join('');
+                if(latest3.length===0) recentContainer.innerHTML = "<p>لا توجد بلاغات بعد</p>";
+            }
+        }
+
+        function renderPayments() {
+            let histDiv = document.getElementById('paymentEpicHistory');
+            histDiv.innerHTML = donorsArray.slice(0, 5).map(d => `<div class="persona-card"><div class="avatar" style="background-image:url('${d.img}');"></div><div><strong>${d.name}</strong> | ${d.amount.toLocaleString()} USD | ${d.type}</div></div>`).join('');
+        }
+
+        function addInvestment(name, amount) {
+            if (!name || amount <= 0) return alert("الرجاء إدخال اسم ومبلغ صحيح");
+            totalBudgetUSD += amount;
+            let randomProj = projectsData[Math.floor(Math.random() * projectsData.length)];
+            randomProj.progress = Math.min(100, randomProj.progress + Math.floor(amount / (randomProj.cost / 100)));
+            donorsArray.unshift({ id: Date.now(), name: name, amount: amount, date: new Date().toISOString().slice(0,10), img: "https://randomuser.me/api/portraits/men/99.jpg", type: "مالية", fundedProjectId: randomProj.id });
+            updateStatsUI();
+            renderDonors();
+            renderPayments();
+            renderProjects();
+            initCharts();
+            alert(`✅ شكراً ${name}! استثمارك ساهم في تقليل الفجوة المالية.`);
+        }
+
+        function openDocModal(projectName) {
+            document.getElementById('docProjectName').value = projectName;
+            document.getElementById('docImageUpload').value = '';
+            document.getElementById('docComment').value = '';
+            document.getElementById('docModal').classList.add('active');
+        }
+        function closeModal() { document.getElementById('docModal').classList.remove('active'); }
+        function confirmDoc() {
+            let file = document.getElementById('docImageUpload').files[0];
+            if (!file) { alert("الرجاء اختيار صورة للتوثيق"); return; }
+            alert("✅ تم استلام توثيقك! سيتم مراجعة الصورة وإضافتها إلى سجل الشفافية.");
+            closeModal();
+        }
+
+        function switchPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+            document.getElementById(`${pageId}Page`).classList.add('active-page');
+            document.querySelectorAll('.nav-link-side, .bottom-nav-item').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll(`.nav-link-side[data-page="${pageId}"], .bottom-nav-item[data-page="${pageId}"]`).forEach(el => el.classList.add('active'));
+            if (pageId === 'home') { initCharts(); updateHomeRecentReports(); }
+            if (pageId === 'projects') renderProjects();
+            if (pageId === 'donors') renderDonors();
+            if (pageId === 'complaints') renderComplaints();
+            if (pageId === 'payment') renderPayments();
+        }
+
+        // Event Listeners
+        document.getElementById('doInvest').addEventListener('click', () => {
+            addInvestment(document.getElementById('investorName').value.trim(), parseFloat(document.getElementById('investAmount').value));
         });
+        document.getElementById('confirmDocBtn').addEventListener('click', confirmDoc);
+        document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+
+        // ربط زر إرسال البلاغ
+        document.getElementById('submitReportBtn').addEventListener('click', () => {
+            const userName = document.getElementById('reportUserName').value;
+            const title = document.getElementById('reportTitle').value;
+            const location = document.getElementById('reportLocation').value;
+            const details = document.getElementById('reportDetails').value;
+            addNewReport(userName, title, location, details);
+            // تفريغ الحقول جزئياً
+            document.getElementById('reportTitle').value = '';
+            document.getElementById('reportDetails').value = '';
+        });
+
+        document.querySelectorAll('.nav-link-side, .bottom-nav-item').forEach(btn => {
+            btn.addEventListener('click', () => switchPage(btn.getAttribute('data-page')));
+        });
+
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                currentSort = chip.dataset.sort;
+                renderComplaints();
+            });
+        });
+
+        // Theme Toggle
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark');
+            const btn = document.getElementById('themeToggle');
+            btn.innerHTML = document.body.classList.contains('dark') ? '<i class="fas fa-sun"></i> الوضع الفاتح' : '<i class="fas fa-moon"></i> الوضع الداكن';
+            initCharts();
+        });
+
+        window.openDocModal = openDocModal;
+        updateStatsUI();
+        initCharts();
+        renderProjects();
+        renderDonors();
+        renderComplaints();
+        renderPayments();
+        updateHomeRecentReports();
     </script>
 </body>
 </html>
